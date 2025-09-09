@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Files: Misteri Rumah Tua</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <header class="header">
+            <h1 class="header__title">Case Files: Misteri Rumah Tua</h1>
+            <div class="header__controls">
+                <button id="btnMute" class="btn btn--secondary" aria-label="Mute/unmute sound">🔇</button>
+                <button id="btnMenu" class="btn btn--secondary">Menu</button>
+            </div>
+        </header>
+
+        <main id="gameContent" class="main-content">
+            <section id="mainMenu" class="main-menu">
+                <h2 class="main-menu__title">Case Files: Misteri Rumah Tua</h2>
+                <p class="main-menu__subtitle">Selamat datang, Detektif. Siapkah Anda memecahkan misteri ini?</p>
+                <div class="main-menu__options">
+                    <button id="btnStart" class="btn">Mulai Game</button>
+                    <button id="btnLevelSelect" class="btn btn--secondary">Pilih Level</button>
+                    <button id="btnHelp" class="btn btn--secondary">Petunjuk</button>
+                    <button id="btnAbout" class="btn btn--secondary">Tentang</button>
+                </div>
+            </section>
+
+            <section id="briefingModal" class="modal">
+                <div class="modal__content">
+                    <h2 class="modal__title" id="briefingTitle">Briefing Kasus</h2>
+                    <div class="modal__body" id="briefingBody">
+                        <p>Deskripsi kasus akan muncul di sini.</p>
+                    </div>
+                    <div class="modal__actions">
+                        <button id="btnStartLevel" class="btn">Mulai Investigasi</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="levelSelect" class="modal">
+                <div class="modal__content">
+                    <button class="modal__close" aria-label="Close">×</button>
+                    <h2 class="modal__title">Pilih Level</h2>
+                    <div class="modal__body">
+                        <div class="level-options">
+                            <div class="level-option">
+                                <h3>Level 1: Pencurian Jam Antik</h3>
+                                <p>Sebuah jam antik telah dicuri dari rumah tua. Temukan petunjuk dan identifikasi pencurinya.</p>
+                                <button class="btn btn--secondary" data-level="level1">Mulai</button>
+                            </div>
+                            <div class="level-option">
+                                <h3>Level 2: Misteri Toko Buku</h3>
+                                <p>Pemilik toko buku ditemukan tewas. Selidiki tempat kejadian dan temukan pembunuhnya.</p>
+                                <button class="btn btn--secondary" data-level="level2">Mulai</button>
+                            </div>
+                            <div class="level-option">
+                                <h3>Level 3: Rahasia Keluarga Tua</h3>
+                                <p>Sebuah keluarga kaya dengan rahaia gelap. Pecahkan misteri yang telah tersembunyi selama puluhan tahun.</p>
+                                <button class="btn btn--secondary" data-level="level3">Mulai</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="gameScene" class="hidden">
+                <div class="game-scene">
+                    <div class="scene-view" id="sceneView">
+                        <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22800%22%20height%3D%22400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20400%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_15e6ced57b8%20text%20%7B%20fill%3A%23AAAAAA%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A40pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_15e6ced57b8%22%3E%3Crect%20width%3D%22800%22%20height%3D%22400%22%20fill%3D%22%23333%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22285%22%20y%3D%22217.7%22%3ELevel%20Background%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Scene background" class="scene-view__image">
+                        <!-- Object hotspots will be added here dynamically -->
+                    </div>
+                    
+                    <div class="inventory-panel" id="inventoryPanel">
+                        <div class="inventory-panel__header">
+                            <h3 class="inventory-panel__title">Inventaris Clue</h3>
+                            <button class="inventory-panel__close btn btn--secondary">✕</button>
+                        </div>
+                        <div class="inventory-panel__items" id="inventoryItems">
+                            <!-- Clue items will be added here dynamically -->
+                            <p class="inventory-empty">Belum ada clue yang ditemukan</p>
+                        </div>
+                        <button id="btnAccuse" class="btn btn--danger">Tuduh Pelaku</button>
+                    </div>
+                </div>
+
+                <button id="inventoryToggle" class="inventory-toggle btn">📦</button>
+
+                <div class="npc-dialog hidden" id="npcDialog">
+                    <!-- NPC dialog content will be added here dynamically -->
+                </div>
+
+                <div class="puzzle-container hidden" id="puzzleContainer">
+                    <!-- Puzzle content will be added here dynamically -->
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>Case Files: Misteri Rumah Tua © 2025 | Dibuat oleh rubuuu</p>
+        </footer>
+    </div>
+
+    <!-- Modal untuk interaksi objek -->
+    <div id="objectModal" class="modal">
+        <div class="modal__content">
+            <button class="modal__close" aria-label="Close">×</button>
+            <h2 class="modal__title" id="objectModalTitle">Judul Objek</h2>
+            <div class="modal__body" id="objectModalBody">
+                <p id="objectModalDescription">Deskripsi objek akan muncul di sini.</p>
+            </div>
+            <div class="modal__actions">
+                <button id="btnTakeClue" class="btn">Ambil Clue</button>
+                <button class="btn btn--secondary" data-modal-close>Abaiakan</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal untuk tuduhan -->
+    <div id="accusationModal" class="modal">
+        <div class="modal__content">
+            <button class="modal__close" aria-label="Close">×</button>
+            <h2 class="modal__title">Tuduh Pelaku</h2>
+            <div class="modal__body">
+                <form class="accusation-form" id="accusationForm">
+                    <div class="form-group">
+                        <label class="form-label" for="suspectSelect">Pilih Tersangka:</label>
+                        <select class="form-select" id="suspectSelect" required>
+                            <option value="">-- Pilih Tersangka --</option>
+                            <!-- Options will be populated dynamically -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Pilih Bukti:</label>
+                        <div class="clue-selection" id="clueSelection">
+                            <!-- Clue checkboxes will be added here dynamically -->
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="accusationReason">Alasan Tuduhan (opsional):</label>
+                        <textarea class="form-textarea" id="accusationReason" placeholder="Jelaskan alasan Anda menuduh tersangka ini..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal__actions">
+                <button type="submit" form="accusationForm" class="btn btn--danger">Tuduh Sekarang</button>
+                <button class="btn btn--secondary" data-modal-close>Batal</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal untuk ending -->
+    <div id="endingModal" class="modal">
+        <div class="modal__content">
+            <button class="modal__close" aria-label="Close">×</button>
+            <h2 class="modal__title" id="endingTitle">Judul Ending</h2>
+            <div class="modal__body" id="endingBody">
+                <p>Deskripsi ending akan muncul di sini.</p>
+            </div>
+            <div class="modal__actions">
+                <button id="btnNextLevel" class="btn btn--success">Lanjut ke Level Berikutnya</button>
+                <button id="btnRestart" class="btn btn--secondary">Main Lagi</button>
+                <button id="btnToMenu" class="btn">Kembali ke Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

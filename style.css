@@ -1,0 +1,674 @@
+:root {
+    --bg-primary: #121212;
+    --bg-secondary: #1e1e1e;
+    --bg-tertiary: #2d2d2d;
+    --text-primary: #f0f0f0;
+    --text-secondary: #a0a0a0;
+    --accent-primary: #8e44ad;
+    --accent-secondary: #3498db;
+    --accent-danger: #e74c3c;
+    --accent-success: #2ecc71;
+    --accent-warning: #f39c12;
+    --shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    --border-radius: 8px;
+    --transition: all 0.3s ease;
+}
+
+/* Reset dan base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    font-size: 16px;
+}
+
+/* Layout utama */
+.game-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.5rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background-color: var(--bg-secondary);
+    border-radius: var(--border-radius);
+    margin-bottom: 0.75rem;
+    box-shadow: var(--shadow);
+}
+
+.header__title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--accent-primary);
+}
+
+.header__controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Tombol */
+.btn {
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: var(--accent-primary);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+.btn:hover {
+    background-color: var(--accent-secondary);
+    transform: translateY(-2px);
+}
+
+.btn--secondary {
+    background-color: var(--bg-tertiary);
+}
+
+.btn--secondary:hover {
+    background-color: var(--accent-primary);
+}
+
+.btn--danger {
+    background-color: var(--accent-danger);
+}
+
+.btn--success {
+    background-color: var(--accent-success);
+}
+
+/* Menu utama */
+.main-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background-color: var(--bg-secondary);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+    min-height: 60vh;
+}
+
+.main-menu__title {
+    font-size: 1.8rem;
+    color: var(--accent-primary);
+    margin-bottom: 0.75rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.main-menu__subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.main-menu__options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 280px;
+}
+
+/* Scene game */
+.game-scene {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    min-height: 60vh;
+}
+
+.scene-view {
+    position: relative;
+    background-color: var(--bg-tertiary);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    min-height: 300px;
+    height: 40vh;
+}
+
+.scene-view__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+}
+
+.scene-object {
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(142, 68, 173, 0.7);
+    border: 2px solid white;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.scene-object:hover {
+    transform: scale(1.1);
+    background-color: rgba(142, 68, 173, 0.9);
+}
+
+.scene-object::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid white;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* Panel inventaris mobile */
+.inventory-toggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .inventory-toggle {
+        display: block;
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
+        z-index: 1001;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: var(--accent-primary);
+        color: white;
+        font-size: 1.5rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* Panel inventaris */
+.inventory-panel {
+    background-color: var(--bg-secondary);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+@media (max-width: 768px) {
+    .inventory-panel {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 85%;
+        height: 100%;
+        z-index: 1000;
+        transition: var(--transition);
+        border-radius: 0;
+    }
+    
+    .inventory-panel--open {
+        right: 0;
+    }
+}
+
+.inventory-panel__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--bg-tertiary);
+}
+
+.inventory-panel__title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.inventory-panel__close {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .inventory-panel__close {
+        display: block;
+    }
+}
+
+.inventory-panel__items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex-grow: 1;
+    overflow-y: auto;
+    max-height: 300px;
+}
+
+@media (max-width: 768px) {
+    .inventory-panel__items {
+        max-height: none;
+    }
+}
+
+.inventory-item {
+    background-color: var(--bg-tertiary);
+    padding: 0.75rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.inventory-item:hover {
+    background-color: var(--accent-primary);
+}
+
+.inventory-item__title {
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+}
+
+.inventory-item__description {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--transition);
+    padding: 1rem;
+}
+
+.modal--open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal__content {
+    background-color: var(--bg-secondary);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    max-width: 500px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow);
+    position: relative;
+}
+
+.modal__close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.modal__title {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--accent-primary);
+}
+
+.modal__body {
+    margin-bottom: 1.5rem;
+}
+
+.modal__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+/* Dialog NPC */
+.npc-dialog {
+    background-color: var(--bg-tertiary);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-top: 1rem;
+}
+
+.npc-dialog__header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.npc-dialog__avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.npc-dialog__info {
+    flex-grow: 1;
+}
+
+.npc-dialog__name {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.npc-dialog__role {
+    color: var(--text-secondary);
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.npc-dialog__messages {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.npc-dialog__message {
+    padding: 0.75rem;
+    border-radius: var(--border-radius);
+    max-width: 80%;
+    font-size: 0.9rem;
+}
+
+.npc-dialog__message--npc {
+    background-color: var(--accent-primary);
+    align-self: flex-start;
+}
+
+.npc-dialog__message--player {
+    background-color: var(--accent-secondary);
+    align-self: flex-end;
+}
+
+.npc-dialog__questions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Puzzle */
+.puzzle-container {
+    background-color: var(--bg-tertiary);
+    padding: 1.25rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+}
+
+.puzzle__title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--accent-primary);
+}
+
+.puzzle__description {
+    margin-bottom: 1rem;
+}
+
+.puzzle__hint {
+    background-color: var(--bg-secondary);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-top: 1rem;
+    border-left: 4px solid var(--accent-warning);
+}
+
+.puzzle__hint-title {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: var(--accent-warning);
+}
+
+/* Form tuduhan */
+.accusation-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.form-select, .form-textarea {
+    padding: 0.75rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--bg-tertiary);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.form-textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.clue-selection {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.clue-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Footer */
+.footer {
+    margin-top: auto;
+    padding: 1rem;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+/* Utility classes */
+.hidden {
+    display: none !important;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Animasi */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease;
+}
+
+/* Responsive styles untuk mobile */
+@media (min-width: 769px) {
+    .game-scene {
+        display: grid;
+        grid-template-columns: 1fr 300px;
+    }
+    
+    .scene-view {
+        min-height: 400px;
+        height: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .header__title {
+        font-size: 1rem;
+    }
+    
+    .btn {
+        padding: 0.5rem 0.75rem;
+        min-height: 40px;
+        min-width: 40px;
+        font-size: 0.8rem;
+    }
+    
+    .main-menu__title {
+        font-size: 1.5rem;
+    }
+    
+    .main-menu__subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .modal__content {
+        padding: 1.25rem;
+    }
+    
+    .modal__title {
+        font-size: 1.2rem;
+    }
+    
+    .npc-dialog__avatar {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .npc-dialog__name {
+        font-size: 1rem;
+    }
+}
+
+/* Orientasi landscape pada mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .game-container {
+        padding: 0.25rem;
+    }
+    
+    .header {
+        padding: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .scene-view {
+        min-height: 200px;
+        height: 55vh;
+    }
+    
+    .inventory-panel__items {
+        max-height: 150px;
+    }
+}
+
+/* Level options styling */
+.level-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.level-option {
+    background-color: var(--bg-tertiary);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+}
+
+.level-option h3 {
+    color: var(--accent-primary);
+    margin-bottom: 0.5rem;
+}
+
+.level-option p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+/* Briefing modal styling */
+#briefingModal .modal__content {
+    max-width: 600px;
+}
+
+#briefingBody {
+    line-height: 1.8;
+}
+
+#briefingBody h3 {
+    color: var(--accent-primary);
+    margin: 1rem 0 0.5rem 0;
+}
+
+#briefingBody ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
