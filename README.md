@@ -1,30 +1,41 @@
 # 🕵️‍♂️ Hi, I'm RubuProject!
 
 ### 🎮 Developer of [Game Mystery](https://github.com/rubuproject/gamemystery)
-Building something mysterious, one commit at a time.
+*Building something mysterious, one commit at a time.*
 
 ---
 
-### 📊 My GitHub Status
+### 🧱 3D Contribution Graph
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=rubuproject&show_icons=true&theme=tokyonight&count_private=true" alt="Rubu Stats" />
+  <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=rubuproject&theme=tokyonight" alt="3D Stats" width="100%"/>
 </p>
 
-### 🚀 Top Languages
+---
+
+### 🏆 Achievements & Trophies
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=rubuproject&layout=compact&theme=tokyonight" alt="Top Langs" />
+  <img src="https://github-profile-trophy.vercel.app/?username=rubuproject&theme=tokyonight&no-bg=true&margin-w=15" alt="Trophies" />
+</p>
+
+---
+
+### 🚀 Activity Graph (Moving)
+<p align="center">
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=rubuproject&theme=tokyonight&area=true&hide_border=true" width="100%" />
 </p>
 
 ---
 
 ### 🛠 Tools & Tech
-![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
-![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
-![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
-![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
+<p align="center">
+  <img src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white" />
+  <img src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E" />
+  <img src="https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white" />
+</p>
 
 ---
 
 ### 📬 Connect with Me
-[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=flat&logo=instagram&logoColor=white)](https://instagram.com/username_kamu)
-[![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=flat&logo=youtube&logoColor=white)](https://youtube.com/c/channel_kamu)
+<p align="center">
+  <a href="https://instagram.com/username_kamu"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" /></a>
+</p>
